@@ -1,0 +1,56 @@
+<div class="container" ng-app="VisitorCenter">
+  <h1>Visitors</h1>
+
+  <div ng-controller="visitorsController">
+    <div class="well">
+      <h3>Add a new Visitor</h3>
+      <form ng-submit="addVisitor()">
+        <div class="row">
+          <div class="col-xs-6">
+            <input type="text" ng-model="newVisitor.first_name" class="form-control" placeholder="First Name" />
+          </div>
+          <div class="col-xs-6">
+            <input type="text" ng-model="newVisitor.last_name" class="form-control" placeholder="Last Name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input type="text" ng-model="newVisitor.reason" class="form-control" placeholder="Reason for Visit" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br />
+            <input type="Submit" value="Add Visitor" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Currently Visiting</h3>
+    <hr />
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Reason for Visit</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="!visitors.length">
+          <td colspan="4">No visitors in the building.</td>
+        </tr>
+        <tr ng-repeat="visitor in visitors">
+          <td>{{ visitor.first_name }}</td>
+          <td>{{ visitor.last_name }}</td>
+          <td>{{ visitor.reason }}</td>
+          <td><a class="btn btn-danger" ng-click="deleteVisitor($index)">Remove</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
